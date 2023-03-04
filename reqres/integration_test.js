@@ -96,7 +96,7 @@ export default function(){
             'response status is 200': (r) => r.status === 200,
             'response body is json': (r) => r.json().name === 'riprip',
             'response body is json': (r) => r.json().job === 'QA Engineer',
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
 
         })
     });
@@ -112,7 +112,7 @@ export default function(){
             'response status is 401': (r) => r.status === 401,
             'response body is json': (r) => r.json().name === 'riprip',
             'response body is json': (r) => r.json().job === 'QA Engineer',
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
         })
     });
 
@@ -126,7 +126,7 @@ export default function(){
             'response status is 401': (r) => r.status === 401,
             'response body is json': (r) => r.json().name === 'riprip',
             'response body is json': (r) => r.json().job === 'QA Engineer',
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
         })
     });
 
@@ -141,7 +141,7 @@ export default function(){
             'response status is 401': (r) => r.status === 401,
             'response body is json': (r) => r.json().name === 'riprip',
             'response body is json': (r) => r.json().job === 'QA Engineer',
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
 
         })
     });
@@ -157,7 +157,7 @@ export default function(){
             'response status is 401': (r) => r.status === 401,
             'response body is json': (r) => r.json().name === 'riprip',
             'response body is json': (r) => r.json().job === 'QA Engineer',
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
 
         })
     });
@@ -169,7 +169,7 @@ export default function(){
         let day = response.json().updatedAt;
         check(response, {
             'response status is 400': (r) => r.status === 401,
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
         })
     });
 }

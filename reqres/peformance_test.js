@@ -2,7 +2,7 @@
 +----+--------+---------------------------------------------------------------------------------------------------------------+
 | No | Module | Test Scenario Description                                                                                     |
 +----+--------+---------------------------------------------------------------------------------------------------------------+
-| 7  |        | Do performance testing {VU: 1000, Iteration: 3500, response tolerance: 2s}, while entering valid random body. |
+| 7  |        | Do performance testing {VU: 1000, Iteration: 3500, response tolerance: 2s}                                    |
 +----+--------+---------------------------------------------------------------------------------------------------------------+
 */
 import {check, group} from 'k6';
@@ -16,19 +16,6 @@ const BASE_URL = 'https://reqres.in/api/users/';
 const params = { headers: { 'Content-Type': 'application/json' } };
 
 export const options = {
-    // vus: 100,
-    // duration: '10s',
-    // iteration: 35,
-    // // stages: [
-    //     {duration: '10s', target: 10},
-    //     {duration: '10s', target: 0},
-    // ],
-    
-    // thresholds: {
-    //     http_req_duration: ['p(99)<2000'], 
-    //     http_req_failed: ['rate<0.01'], 
-    //     checks: ['rate>0.99'],
-    // },
     scenarios: {
         contacts: {
             executor: 'ramping-arrival-rate',
@@ -37,9 +24,7 @@ export const options = {
             maxVUs: 1000,
 
             stages: [
-                // { target: 200, duration: '5s' },
                 { target: 350, duration: '10s' },
-                // { target: 200, duration: '5s' },
                 { target: 0, duration: '10s' },
             ],
         },
