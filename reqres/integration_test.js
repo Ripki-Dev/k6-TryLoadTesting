@@ -5,6 +5,14 @@ import http from 'k6/http';
 const BASE_URL = 'https://reqres.in/api/users';
 const params = { headers: { 'Content-Type': 'application/json' } };
 
+export const options = {
+    thresholds: {
+        http_req_duration: ['p(95)<2000'], 
+        http_req_failed: ['rate<0.01'], 
+        checks: ['rate>0.99'],
+    },
+};
+
 export default function(){
     group('Scenario-1-Post', () => {
         let data = {name: 'riprip', job: 'QA Engineer'};
