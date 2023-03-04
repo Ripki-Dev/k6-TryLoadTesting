@@ -7,6 +7,9 @@
 */
 import {check, group} from 'k6';
 import http from 'k6/http';
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
+
 
 
 const BASE_URL = 'https://reqres.in/api/users/';
@@ -76,8 +79,15 @@ export default function () {
             'response status is 200': (r) => r.status === 200,
             'response body is json': (r) => r.json().name === 'riprip',
             'response body is json': (r) => r.json().job === 'QA Engineer',
-            'response body contains createdAt': (r) => r.json().updatedAt === day
+            'response body contains updatedAt': (r) => r.json().updatedAt === day
 
         })
     });
+}
+
+export function handleSummary(data) {
+    return {
+      "result.html": htmlReport(data),
+      stdout: textSummary(data, { indent: " ", enableColors: true }),
+    };
 }
