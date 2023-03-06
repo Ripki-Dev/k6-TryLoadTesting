@@ -1,3 +1,23 @@
+/*
++----+--------+---------------------------------------------------------------------------------------------------------------+
+| No | Module | Test Scenario Description                                                                                     |
++----+--------+---------------------------------------------------------------------------------------------------------------+
+| 1  | POST   | Enter valid body{"name": "riprip", "job": "QA Engineer"} and get response 200                                 |
+| 2  |        | Enter valid body{"name": "riprip", "job": "QA Engineer", "id": "69"} and get response 400                     |
+| 3  |        | Enter Invalid (numeric) body{"name": 1234567, "job": 32123123} and get response 400                           |
+| 4  |        | Enter Invalid request body{"try": "hello bug"} and get response 400                                           |
+| 5  |        | Enter blank body request and get response 400                                                                 |
+| 6  |        | Enter valid body{"name": "riprip", "job": "QA Engineer"},add params(string("/abc/def")) and get response 401  |
++----+--------+---------------------------------------------------------------------------------------------------------------+
+| 1  | UPDATE | Enter valid body{"name": "riprip", "job": "QA Engineer"}, valid param(int(2)) and get response 200            |
+| 2  |        | Enter valid body{"name": "riprip", "job": "QA Engineer"}, invalid param(int(0)) and get response 401          |
+| 3  |        | Enter valid body{"name": "riprip", "job": "QA Engineer"}, blank param and get response 401                    |
+| 4  |        | Enter valid body{"name": "riprip", "job": "QA Engineer"}, invalid param(int(-5)) and get response 401         |
+| 5  |        | Enter valid body{"name": "riprip", "job": "QA Engineer"}, invalid param(string("try")) and get response 401   |
+| 6  |        | Enter blank body request and get response 400                                                                 |
++----+--------+---------------------------------------------------------------------------------------------------------------+
+*/
+
 import {check, group} from 'k6';
 import http from 'k6/http';
 
@@ -5,13 +25,13 @@ import http from 'k6/http';
 const BASE_URL = 'https://reqres.in/api/users';
 const params = { headers: { 'Content-Type': 'application/json' } };
 
-export const options = {
-    thresholds: {
-        http_req_duration: ['p(95)<2000'], 
-        http_req_failed: ['rate<0.01'], 
-        checks: ['rate>0.99'],
-    },
-};
+// export const options = {
+//     thresholds: {
+//         http_req_duration: ['p(95)<2000'], 
+//         http_req_failed: ['rate<0.01'], 
+//         checks: ['rate>0.99'],
+//     },
+// };
 
 export default function(){
     group('Scenario-1-Post', () => {

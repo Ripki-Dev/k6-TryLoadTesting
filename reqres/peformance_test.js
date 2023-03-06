@@ -16,19 +16,21 @@ const BASE_URL = 'https://reqres.in/api/users/';
 const params = { headers: { 'Content-Type': 'application/json' } };
 
 export const options = {
-    scenarios: {
-        contacts: {
-            executor: 'ramping-arrival-rate',
-            timeUnit: '1s',
-            preAllocatedVUs: 1000,
-            maxVUs: 1000,
+    vus: 1000,
+    iterations : 3500,
+    // scenarios: {
+    //     contacts: {
+    //         executor: 'ramping-arrival-rate',
+    //         timeUnit: '1s',
+    //         preAllocatedVUs: 1000,
+    //         maxVUs: 1000,
 
-            stages: [
-                { target: 350, duration: '10s' },
-                { target: 0, duration: '10s' },
-            ],
-        },
-    },
+    //         stages: [
+    //             { target: 350, duration: '10s' },
+    //             { target: 0, duration: '10s' },
+    //         ],
+    //     },
+    // },
     thresholds: {
         http_req_duration: ['p(95)<2000'], 
         http_req_failed: ['rate<0.01'], 
@@ -72,7 +74,7 @@ export default function () {
 
 export function handleSummary(data) {
     return {
-      "result.html": htmlReport(data),
+      "baru.html": htmlReport(data),
       stdout: textSummary(data, { indent: " ", enableColors: true }),
     };
 }
